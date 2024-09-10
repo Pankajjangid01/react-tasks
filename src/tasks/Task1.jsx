@@ -5,11 +5,23 @@ const Task1 = () => {
   const [disabled, setDisabled] = useState(false);
   const [number1, setNumber1] = useState("");
   const [number2, setNumber2] = useState("");
-
-  const records = ["React", "Node.js", "Express", "MongoDB"];
+  const [newTech, setNewTech] = useState("");
+  const [records, setRecords] = useState([
+    "React",
+    "Node.js",
+    "Express",
+    "MongoDB",
+  ]);
 
   const sum = () => {
     return parseInt(number1 || 0) + parseInt(number2 || 0);
+  };
+
+  const addTech = () => {
+    if (newTech.trim()) {
+      setRecords([...records, newTech]);
+      setNewTech("");
+    }
   };
 
   return (
@@ -44,6 +56,7 @@ const Task1 = () => {
               Show/Hide
             </button>
           </li>
+
           <li className="p-2 bg-rose-200 rounded-lg text-slate-800 border border-rose-300 shadow-md">
             <h3 className="font-semibold">4. Enable/Disable a Button</h3>
             <button
@@ -63,7 +76,8 @@ const Task1 = () => {
               Click Me
             </button>
           </li>
-          <li className="p-2 bg-rose-200 rounded-lg text-slate-800border border-rose-300 shadow-md">
+
+          <li className="p-2 bg-rose-200 rounded-lg text-slate-800 border border-rose-300 shadow-md">
             <h3 className="font-semibold">
               5. Two-Way Data Binding using Textbox
             </h3>
@@ -82,10 +96,12 @@ const Task1 = () => {
               placeholder="Enter number 2"
             />
           </li>
+
           <li className="p-2 bg-rose-200 rounded-lg text-slate-800 border border-rose-300 shadow-md">
             <h3 className="font-semibold">6. Do Sum of Two Numbers</h3>
             <p className="text-rose-500">Sum: {sum()}</p>
           </li>
+
           <li className="p-2 bg-rose-200 rounded-lg text-slate-800 border border-rose-300 shadow-md">
             <h3 className="font-semibold">
               7. Dynamically Add Child Components (Technologies List)
@@ -97,6 +113,19 @@ const Task1 = () => {
                 </li>
               ))}
             </ul>
+            <input
+              className="w-full p-2 mt-2 border rounded-md text-rose-500"
+              type="text"
+              value={newTech}
+              onChange={(e) => setNewTech(e.target.value)}
+              placeholder="Enter new technology"
+            />
+            <button
+              className="mt-2 px-4 py-1 bg-pink-300 text-rose-500 rounded-md"
+              onClick={addTech}
+            >
+              Add Technology
+            </button>
           </li>
         </ul>
       </div>
